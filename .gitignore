@@ -1,1 +1,6 @@
 /*.meta
+!/Editor.meta
+!/Runtime.meta
+!/Tests.meta
+!/Samples.meta
+!/Documentation.meta
