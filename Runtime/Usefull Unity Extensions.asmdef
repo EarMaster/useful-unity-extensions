@@ -1,0 +1,14 @@
+{
+    "name": "com.vx.unityextensions",
+    "rootNamespace": "VISIONSBOX.Extensions",
+    "references": [
+        "GUID:f3ae0e567c878fb4bae76a82f5f7c8d1"
+    ],
+    "versionDefines": [
+        {
+            "name": "com.pixelplacement.surge.tween",
+            "expression": "1.0.0",
+            "define": "SURGE_TWEEN_AVAILABLE"
+        }
+    ]
+}
