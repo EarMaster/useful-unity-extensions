@@ -1,0 +1,19 @@
+{
+	"name": "com.vx.unityextensions",
+	"displayName": "Useful Unity Extensions",
+	"version": "1.2.0",
+	"description": "This package extends some default Unity classes with useful methods and tools.",
+	"author": {
+		"name": "Nico Wiedemann",
+		"email": "nico.wiedemann@visionsbox.de"
+	},
+	"changelogUrl": "https://git.visionsbox.de/nico.wiedemann/useful-unity-extensions/-/blob/main/CHANGELOG.md",
+	"documentationUrl": "https://git.visionsbox.de/nico.wiedemann/useful-unity-extensions/-/blob/main/README.md",
+	"licensesUrl": "https://git.visionsbox.de/nico.wiedemann/useful-unity-extensions/-/blob/main/LICENSE.md",
+	"license": "MIT",
+	"keywords": [ "extension methods" ],
+	"dependencies": {
+		"com.pixelplacement.surge.tween": "1.0.0"
+	}
+}
+
