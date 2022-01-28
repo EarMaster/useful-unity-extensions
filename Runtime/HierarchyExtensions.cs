@@ -11,7 +11,7 @@ namespace VISIONSBOX.Extensions {
 			for (int i = transform.childCount - 1; i >= 0; --i)
 				GameObject.DestroyImmediate(transform.GetChild(i).gameObject);
 		}
-		/// <summary>Sets the GameObject active state including all childrin to the given depth (defaults to 1 meaning only direct children are effected).</summary>
+		/// <summary>Sets the <c>GameObject</c> active state including all childrin to the given depth (defaults to 1 meaning only direct children are effected).</summary>
 		public static void SetActiveIncludingChildren(this GameObject gameObject, bool State, int Depth = 1) {
 			gameObject.SetActive(State);
 			if (Depth > 0)

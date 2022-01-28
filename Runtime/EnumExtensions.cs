@@ -14,6 +14,7 @@ namespace VISIONSBOX.Extensions {
 				throw new ArgumentException(string.Format("Type '{0}' doesn't have the 'Flags' attribute", typeof(T).FullName));
 		}
 
+		/// <summary>Checks if a specific flag is set in an <c>enum</c></summary>
 		public static bool IsFlagSet<T>(this T value, T flag) where T : struct {
 			CheckIsEnum<T>(true);
 			long lValue = Convert.ToInt64(value);
@@ -21,6 +22,7 @@ namespace VISIONSBOX.Extensions {
 			return (lValue & lFlag) != 0;
 		}
 
+		/// <summary>Gets only the flags of an <c>enum</c> which are set.</summary>
 		public static IEnumerable<T> GetFlags<T>(this T value) where T : struct {
 			CheckIsEnum<T>(true);
 			foreach (T flag in Enum.GetValues(typeof(T)).Cast<T>()) {
@@ -29,6 +31,7 @@ namespace VISIONSBOX.Extensions {
 			}
 		}
 
+		/// <summary>Changes (multiple) flags by merging an <c>enum</c> of the same type.</summary>
 		public static T SetFlags<T>(this T value, T flags, bool on) where T : struct {
 			CheckIsEnum<T>(true);
 			long lValue = Convert.ToInt64(value);
@@ -40,15 +43,16 @@ namespace VISIONSBOX.Extensions {
 			}
 			return (T)Enum.ToObject(typeof(T), lValue);
 		}
-
+		/// <summary>Sets (multiple) flags by merging an <c>enum</c> of the same type.</summary>
 		public static T SetFlags<T>(this T value, T flags) where T : struct {
 			return value.SetFlags(flags, true);
 		}
-
+		/// <summary>Unsets (multiple) flags by merging an <c>enum</c> of the same type.</summary>
 		public static T ClearFlags<T>(this T value, T flags) where T : struct {
 			return value.SetFlags(flags, false);
 		}
 
+		/*/// <summary></summary>
 		public static T CombineFlags<T>(this IEnumerable<T> flags) where T : struct {
 			CheckIsEnum<T>(true);
 			long lValue = 0;
@@ -57,7 +61,8 @@ namespace VISIONSBOX.Extensions {
 				lValue |= lFlag;
 			}
 			return (T)Enum.ToObject(typeof(T), lValue);
-		}
+		}*/
+		/// <summary>Returns an <c>enum</c> with every flag set.</summary>
 		public static T Everything<T>(this T value) where T : struct {
 			CheckIsEnum<T>(true);
 			long lValue = 0;
@@ -67,11 +72,13 @@ namespace VISIONSBOX.Extensions {
 			}
 			return (T)Enum.ToObject(typeof(T), lValue);
 		}
+		/// <summary>Returns an <c>enum</c> with no flag set.</summary>
 		public static T Nothing<T>(this T value) where T : struct {
 			CheckIsEnum<T>(true);
 			long lValue = 0;
 			return (T)Enum.ToObject(typeof(T), lValue);
 		}
+		/// <summary>Get <c>enum</c> description attribute.</summary>
 		public static string GetDescription<T>(this T value) where T : struct {
 			CheckIsEnum<T>(false);
 			string name = Enum.GetName(typeof(T), value);
@@ -87,7 +94,8 @@ namespace VISIONSBOX.Extensions {
 			return null;
 		}
 		// TODO: implement (used in static selection helper)
-		/*public static bool HasAllFlags<T>(this T value, T checkFlags) where T : struct {
+		/*/// <summary>Checks if all provided flags of an <c>enum</c> are set.</summary>
+		public static bool HasAllFlags<T>(this T value, T checkFlags) where T : struct {
 			bool HasAllFlags = true;
 			bool HasOtherFlags = false;
 			foreach (T Flag in Enum.GetValues(typeof(T)))
@@ -95,6 +103,7 @@ namespace VISIONSBOX.Extensions {
 					HasAllFlags = false;
 			return HasAllFlags;
 		}
+		/// <summary>Checks if only the provided flags of an <c>enum</c> are set.</summary>
 		public static bool HasOnlyFlags<T>(this T value, T checkFlags) where T : struct {
 			bool HasAllFlags = true;
 			bool HasOtherFlags = false;

@@ -25,7 +25,7 @@ namespace VISIONSBOX.Extensions {
 		public static bool IsVisible(this CanvasGroup CanvasGroup) {
 			return CanvasGroup.interactable;
 		}
-		/// <summary>Makes the CanvasGroup visible.</summary>
+		/// <summary>Makes the CanvasGroup visible and interactable.</summary>
 		public static void Show(this CanvasGroup CanvasGroup, float? Duration = null, float? Delay = null, bool SetInvisibleBefore = false) {
 			#if SURGE_TWEEN_AVAILABLE
 			if (!(Application.isEditor && !Application.isPlaying)) {
@@ -62,11 +62,17 @@ namespace VISIONSBOX.Extensions {
 		public static void HideButKeepActive(this CanvasGroup CanvasGroup, float? Duration = null, float? Delay = null, bool SetVisibleBefore = false) {
 			CanvasGroup.Hide(Duration, Delay, SetVisibleBefore, false);
 		}
-		/// <summary>Fades the CanvasGroup and makes it non-interactible.</summary>
+		/// <summary>Hides the CanvasGroup immediatly without transition.</summary>
+		public static void HideImmediate(this CanvasGroup CanvasGroup, bool SetInactive = true) {
+			if (SetInactive)
+				CanvasGroup.gameObject.SetActive(false);
+			CanvasGroup.alpha = 0f;
+			CanvasGroup.interactable = false;
+		}
+		/// <summary>Fades the CanvasGroup to a specified Alpha.</summary>
 		public static void Fade(this CanvasGroup CanvasGroup, float Alpha, float? Duration) {
 			#if SURGE_TWEEN_AVAILABLE
 			if (!(Application.isEditor && !Application.isPlaying)) {
-				CanvasGroup.interactable = false;
 				if (Duration.HasValue)
 					Tween.CanvasGroupAlpha(CanvasGroup, Alpha, Duration.Value, 0f);
 				else
@@ -74,13 +80,6 @@ namespace VISIONSBOX.Extensions {
 			} else
 			#endif
 			CanvasGroup.alpha = Alpha;
-		}
-		/// <summary>Hides the CanvasGroup immediatly without transition.</summary>
-		public static void HideImmediate(this CanvasGroup CanvasGroup, bool SetInactive = true) {
-			if (SetInactive)
-				CanvasGroup.gameObject.SetActive(false);
-			CanvasGroup.alpha = 0f;
-			CanvasGroup.interactable = false;
 		}
 	}
 }

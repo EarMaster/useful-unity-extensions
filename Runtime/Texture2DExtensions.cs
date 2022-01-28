@@ -21,6 +21,7 @@ namespace VISIONSBOX.Extensions {
 			Background.Apply();
 		}
 
+		/// <summary>Fills a <c>Texture2D</c> with a solid <c>Color</c>.</summary>
 		public static void SolidColor(this Texture2D Texture, Color FillColor) {
 			for (int x = 0; x < Texture.width; x++)
 				for (int y = 0; y < Texture.height; y++)
