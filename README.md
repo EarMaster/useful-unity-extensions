@@ -1,6 +1,8 @@
 # Useful Unity Extensions
 This package extends some default Unity classes with useful methods and tools.
 
+[![openupm](https://img.shields.io/npm/v/com.vx.unityextensions?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.vx.unityextensions/)
+
 ## Canvas Group Extensions
 ### CanvasGroup.Toggle(**bool?** SetValue = *null*)
 Toggles visibility of the **CanvasGroup**.
