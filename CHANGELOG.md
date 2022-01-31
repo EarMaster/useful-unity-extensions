@@ -1,5 +1,8 @@
 # Changelog
 
+# 1.2.3
+* Canvas Super Group component
+
 # 1.2.0
 * Canvas Group Helper (for Unity Events)
 

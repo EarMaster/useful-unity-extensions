@@ -21,6 +21,12 @@ Fades the CanvasGroup to a specified Alpha.
 ### CanvasGroup.HideImmediate(**bool** SetInactive = *true*)
 Hides the CanvasGroup immediatly without transition.
 
+## Canvas Group Helpers (components)
+### Canvas Group Helper
+Add this component to a GameObject with a **CanvasGroup** and access the added methods via UnityEvent picker (e.g. Button OnClick).
+### Canvas Super Group
+Control multiple **CanvasGroup** with this super group.
+
 ## Enum Extensions
 ### IsFlagSet<T>(T flag) : **bool**
 Checks if a specific flag is set in an **enum**
