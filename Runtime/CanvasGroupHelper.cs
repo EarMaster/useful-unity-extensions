@@ -23,7 +23,7 @@ namespace VISIONSBOX.Extensions {
 		public void Hide() { CanvasGroup.Hide(); }
 		[ContextMenu("Hide (but keep active)")]
 		public void HideButKeepActive() { CanvasGroup.HideButKeepActive(); }
-		public void Fade(float Alpha) { CanvasGroup.Fade(Alpha, null); }
+		public void Fade(float Alpha) { CanvasGroup.Fade(Alpha); }
 		public void HideImmediate() { CanvasGroup.HideImmediate(); }
 	}
 }

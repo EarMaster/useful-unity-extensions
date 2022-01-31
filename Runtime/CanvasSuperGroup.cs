@@ -20,6 +20,15 @@ namespace VISIONSBOX.Extensions {
 				Show();
 		}
 
+		[ContextMenu]
+		public void Toggle() {
+			foreach (CanvasGroup CanvasGroup in Group)
+				CanvasGroup.Toggle();
+		}
+		public void Toggle(bool SetValue) {
+			foreach (CanvasGroup CanvasGroup in Group)
+				CanvasGroup.Toggle(SetValue);
+		}
 		public void Toggle(bool? SetValue = null) {
 			foreach (CanvasGroup CanvasGroup in Group)
 				CanvasGroup.Toggle(SetValue);
@@ -30,6 +39,11 @@ namespace VISIONSBOX.Extensions {
 				GroupVisibility = GroupVisibility && CanvasGroup.IsVisible();
 			return GroupVisibility;
 		}
+		[ContextMenu("Show")]
+		public void Show() {
+			foreach (CanvasGroup CanvasGroup in Group)
+				CanvasGroup.Show();
+		}
 		public void Show(float? Duration = null, float? Delay = null, bool SetInvisibleBefore = false) {
 			foreach (CanvasGroup CanvasGroup in Group)
 				CanvasGroup.Show(Duration, Delay, SetInvisibleBefore);
@@ -38,17 +52,39 @@ namespace VISIONSBOX.Extensions {
 			foreach (CanvasGroup CanvasGroup in Group)
 				CanvasGroup.ShowImmediate();
 		}
+		public void ShowImmediate() {
+			foreach (CanvasGroup CanvasGroup in Group)
+				CanvasGroup.ShowImmediate();
+		}
+		[ContextMenu("Hide")]
+		public void Hide() {
+			foreach (CanvasGroup CanvasGroup in Group)
+				CanvasGroup.Hide();
+		}
 		public void Hide(float? Duration = null, float? Delay = null, bool SetVisibleBefore = false, bool SetInactive = true) {
 			foreach (CanvasGroup CanvasGroup in Group)
 				CanvasGroup.Hide(Duration, Delay, SetVisibleBefore, SetInactive);
+		}
+		[ContextMenu("Hide (but keep active)")]
+		public void HideButKeepActive() {
+			foreach (CanvasGroup CanvasGroup in Group)
+				CanvasGroup.HideButKeepActive();
 		}
 		public void HideButKeepActive(float? Duration = null, float? Delay = null, bool SetVisibleBefore = false) {
 			foreach (CanvasGroup CanvasGroup in Group)
 				CanvasGroup.HideButKeepActive(Duration, Delay, SetVisibleBefore);
 		}
+		public void Fade(float Alpha) {
+			foreach (CanvasGroup CanvasGroup in Group)
+				CanvasGroup.Fade(Alpha);
+		}
 		public void Fade(float Alpha, float? Duration) {
 			foreach (CanvasGroup CanvasGroup in Group)
 				CanvasGroup.Fade(Alpha, Duration);
+		}
+		public void HideImmediate() {
+			foreach (CanvasGroup CanvasGroup in Group)
+				CanvasGroup.HideImmediate();
 		}
 		public void HideImmediate(bool SetInactive = true) {
 			foreach (CanvasGroup CanvasGroup in Group)
