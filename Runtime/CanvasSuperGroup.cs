@@ -14,8 +14,9 @@ namespace VISIONSBOX.Extensions {
 
 		[ContextMenu("Toggle")]
 		public void Toggle() {
+			bool SetValue = !IsVisible();
 			foreach (CanvasGroup CanvasGroup in Group)
-				CanvasGroup.Toggle(!IsVisible());
+				CanvasGroup.Toggle(SetValue);
 		}
 		public void Toggle(bool SetValue) {
 			foreach (CanvasGroup CanvasGroup in Group)
