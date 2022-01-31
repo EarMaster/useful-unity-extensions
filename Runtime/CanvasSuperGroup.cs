@@ -46,10 +46,6 @@ namespace VISIONSBOX.Extensions {
 			foreach (CanvasGroup CanvasGroup in Group)
 				CanvasGroup.ShowImmediate();
 		}
-		public void ShowImmediate() {
-			foreach (CanvasGroup CanvasGroup in Group)
-				CanvasGroup.ShowImmediate();
-		}
 		[ContextMenu("Hide")]
 		public void Hide() {
 			foreach (CanvasGroup CanvasGroup in Group)
@@ -70,7 +66,7 @@ namespace VISIONSBOX.Extensions {
 		}
 		public void Fade(float Alpha) {
 			foreach (CanvasGroup CanvasGroup in Group)
-				CanvasGroup.Fade(Alpha);
+				CanvasGroup.Fade(Alpha, null);
 		}
 		public void Fade(float Alpha, float? Duration) {
 			foreach (CanvasGroup CanvasGroup in Group)
