@@ -7,9 +7,9 @@
 		"name": "Nico Wiedemann",
 		"email": "nico.wiedemann@visionsbox.de"
 	},
-	"changelogUrl": "https://git.visionsbox.de/nico.wiedemann/useful-unity-extensions/-/blob/main/CHANGELOG.md",
-	"documentationUrl": "https://git.visionsbox.de/nico.wiedemann/useful-unity-extensions/-/blob/main/README.md",
-	"licensesUrl": "https://git.visionsbox.de/nico.wiedemann/useful-unity-extensions/-/blob/main/LICENSE.md",
+	"changelogUrl": "https://github.com/EarMaster/useful-unity-extensions/blob/main/CHANGELOG.md",
+	"documentationUrl": "https://github.com/EarMaster/useful-unity-extensions/blob/main/README.md",
+	"licensesUrl": "https://github.com/EarMaster/useful-unity-extensions/blob/main/LICENSE.md",
 	"license": "MIT",
 	"keywords": [ "extension methods" ],
 	"dependencies": {
