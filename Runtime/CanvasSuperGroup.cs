@@ -13,25 +13,19 @@ namespace VISIONSBOX.Extensions {
 		}
 
 		[ContextMenu("Toggle")]
-		protected void ToggleInEditor() {
-			if (IsVisible())
-				Hide();
-			else
-				Show();
-		}
-
-		[ContextMenu]
 		public void Toggle() {
 			foreach (CanvasGroup CanvasGroup in Group)
-				CanvasGroup.Toggle();
+				CanvasGroup.Toggle(!IsVisible());
 		}
 		public void Toggle(bool SetValue) {
 			foreach (CanvasGroup CanvasGroup in Group)
 				CanvasGroup.Toggle(SetValue);
 		}
 		public void Toggle(bool? SetValue = null) {
-			foreach (CanvasGroup CanvasGroup in Group)
-				CanvasGroup.Toggle(SetValue);
+			if (SetValue.HasValue)
+				Toggle(SetValue.Value);
+			else
+				Toggle();
 		}
 		public bool IsVisible() {
 			bool GroupVisibility = true;
