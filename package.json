@@ -1,7 +1,7 @@
 {
 	"name": "com.vx.unityextensions",
 	"displayName": "Useful Unity Extensions",
-	"version": "1.2.3",
+	"version": "1.2.4",
 	"description": "This package extends some default Unity classes with useful methods and tools.",
 	"author": {
 		"name": "Nico Wiedemann",
