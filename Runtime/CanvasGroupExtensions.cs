@@ -1,8 +1,10 @@
 namespace VISIONSBOX.Extensions {
 	using UnityEngine;
 	using UnityEngine.UI;
+	using System.Collections.Generic;
 	#if SURGE_TWEEN_AVAILABLE
 	using Pixelplacement;
+	using Pixelplacement.TweenSystem;
 	#endif
 
 	public static class CanvasGroupExtensions {
@@ -29,11 +31,12 @@ namespace VISIONSBOX.Extensions {
 		public static void Show(this CanvasGroup CanvasGroup, float? Duration = null, float? Delay = null, bool SetInvisibleBefore = false) {
 			#if SURGE_TWEEN_AVAILABLE
 			if (!(Application.isEditor && !Application.isPlaying)) {
+				CancelRunningTween(CanvasGroup);
 				if (SetInvisibleBefore)
 					CanvasGroup.HideImmediate(false);
 				CanvasGroup.interactable = true;
-				Tween.CanvasGroupAlpha(CanvasGroup, 1f, Duration.HasValue ? Duration.Value : ChangeDuration, Delay.HasValue ? Delay.Value : 0f, null, Tween.LoopType.None,
-				                       () => CanvasGroup.gameObject.SetActive(true), null);
+				RunningTweens.Add(CanvasGroup, Tween.CanvasGroupAlpha(CanvasGroup, 1f, Duration.HasValue ? Duration.Value : ChangeDuration, Delay.HasValue ? Delay.Value : 0f, null, Tween.LoopType.None,
+				                                                      () => CanvasGroup.gameObject.SetActive(true), () => { RunningTweens.Remove(CanvasGroup); }));
 			} else
 			#endif
 			CanvasGroup.ShowImmediate();
@@ -49,11 +52,12 @@ namespace VISIONSBOX.Extensions {
 		public static void Hide(this CanvasGroup CanvasGroup, float? Duration = null, float? Delay = null, bool SetVisibleBefore = false, bool SetInactive = true) {
 			#if SURGE_TWEEN_AVAILABLE
 			if (!(Application.isEditor && !Application.isPlaying)) {
+				CancelRunningTween(CanvasGroup);
 				if (SetVisibleBefore)
 					CanvasGroup.ShowImmediate();
 				CanvasGroup.interactable = false;
-				Tween.CanvasGroupAlpha(CanvasGroup, 0f, Duration.HasValue ? Duration.Value : ChangeDuration, Delay.HasValue ? Delay.Value : 0f, null, Tween.LoopType.None,
-				                       null, () => { if (SetInactive) CanvasGroup.gameObject.SetActive(false); });
+				RunningTweens.Add(CanvasGroup, Tween.CanvasGroupAlpha(CanvasGroup, 0f, Duration.HasValue ? Duration.Value : ChangeDuration, Delay.HasValue ? Delay.Value : 0f, null, Tween.LoopType.None,
+				                                                      null, () => {if (SetInactive) CanvasGroup.gameObject.SetActive(false); RunningTweens.Remove(CanvasGroup); }));
 			} else
 			#endif
 			CanvasGroup.HideImmediate(SetInactive);
@@ -73,13 +77,23 @@ namespace VISIONSBOX.Extensions {
 		public static void Fade(this CanvasGroup CanvasGroup, float Alpha, float? Duration) {
 			#if SURGE_TWEEN_AVAILABLE
 			if (!(Application.isEditor && !Application.isPlaying)) {
+				CancelRunningTween(CanvasGroup);
 				if (Duration.HasValue)
-					Tween.CanvasGroupAlpha(CanvasGroup, Alpha, Duration.Value, 0f);
+					RunningTweens.Add(CanvasGroup, Tween.CanvasGroupAlpha(CanvasGroup, Alpha, Duration.Value, 0f, null, Tween.LoopType.None, null, () => { RunningTweens.Remove(CanvasGroup); }));
 				else
-					Tween.CanvasGroupAlpha(CanvasGroup, Alpha, ChangeDuration, 0f);
+					RunningTweens.Add(CanvasGroup, Tween.CanvasGroupAlpha(CanvasGroup, Alpha, ChangeDuration, 0f, null, Tween.LoopType.None, null, () => { RunningTweens.Remove(CanvasGroup); }));
 			} else
 			#endif
 			CanvasGroup.alpha = Alpha;
+		}
+		public static Dictionary<CanvasGroup, TweenBase> RunningTweens = new Dictionary<CanvasGroup, TweenBase>();
+		private static void CancelRunningTween(CanvasGroup CanvasGroup) {
+			#if SURGE_TWEEN_AVAILABLE
+			if (RunningTweens.TryGetValue(CanvasGroup, out TweenBase Tween)) {
+				Tween.Cancel();
+				RunningTweens.Remove(CanvasGroup);
+			}
+			#endif
 		}
 	}
 }
